@@ -28,17 +28,21 @@ def user_upload_pdf():
 
 def load_or_create_index():
     PERSIST_DIR = "./storage"
-    with st.spinner('Analysing information, please wait...'):
+    with st.spinner('Analyzing information, please wait...'):
         if 'index_loaded' not in st.session_state or not st.session_state.index_loaded:
-            if not os.path.exists(PERSIST_DIR):
-                print("Creating index and saving them locally")
-                documents = SimpleDirectoryReader(input_dir='./tempDir').load_data()
-                index = VectorStoreIndex.from_documents(documents, show_progress=True)
-                index.storage_context.persist(persist_dir=PERSIST_DIR)
-            else:
-                print("Loading embeddings from disk")
-                storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
-                index = load_index_from_storage(storage_context)
+            # if not os.path.exists(PERSIST_DIR):
+            #     print("Creating index and saving them locally")
+            #     documents = SimpleDirectoryReader(input_dir='./tempDir').load_data()
+            #     index = VectorStoreIndex.from_documents(documents, show_progress=True)
+            #     index.storage_context.persist(persist_dir=PERSIST_DIR)
+            # else:
+            #     print("Loading embeddings from disk")
+            #     storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
+            #     index = load_index_from_storage(storage_context)
+            documents = SimpleDirectoryReader(input_dir='./tempDir').load_data()
+            index = VectorStoreIndex.from_documents(documents, show_progress=True)
+            index.storage_context.persist(persist_dir=PERSIST_DIR)
+            
             st.session_state.index = index
             st.session_state.index_loaded = True
         else:
