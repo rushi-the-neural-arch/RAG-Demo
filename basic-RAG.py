@@ -1,6 +1,5 @@
 import os, streamlit as st
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, ServiceContext, StorageContext, load_index_from_storage
-from langchain.chat_models import ChatOpenAI
 import traceback
 
 from llama_index.core.retrievers import VectorIndexRetriever
