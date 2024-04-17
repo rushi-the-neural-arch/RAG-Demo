@@ -28,7 +28,7 @@ def user_upload_pdf():
 
 def load_or_create_index():
     PERSIST_DIR = "./storage"
-    with st.spinner('Creating or loading index, please wait...'):
+    with st.spinner('Analysing information, please wait...'):
         if 'index_loaded' not in st.session_state or not st.session_state.index_loaded:
             if not os.path.exists(PERSIST_DIR):
                 print("Creating index and saving them locally")
